@@ -9,40 +9,33 @@ import utilities.Driver;
 public class DemoQAPage {
 	
 	public DemoQAPage() {
-		PageFactory.initElements(Driver.getDriver(),this);
+		PageFactory.initElements(Driver.getDriver(), this);
 	}
-	//RadioPage elements
-	@FindBy(xpath="//div[contains(text(),'Do you like the site')]")
+	
+	// Demo Radio page elements 
+	@FindBy (xpath = "//div[contains(text(), 'Do you like')]")
 	public WebElement doYouLikeText;
 	
-	@FindBy (xpath="//label[@for='yesRadio']")
+	@FindBy (xpath = "//label[@for='yesRadio']")
 	public WebElement yesRadioLabel;
 	
-	@FindBy (xpath="//label[@for='impressiveRadio']")
+	@FindBy (xpath = "//label[@for='impressiveRadio']")
 	public WebElement impressiveRadioLabel;
 	
+	public WebElement noRadio; // if there is an id that is meaning, we can just use the id directly
 
-	public WebElement noRadio;
-	
-	@FindBy (css=".mt-3")
+	@FindBy (css = ".mt-3")
 	public WebElement radioSelectText;
-
 	
-	//Alerts page element
-	@FindBy(id= "alertButton")
-	public WebElement AlertButton;
+	
+	// Demo Alerts page elements
+	@FindBy (id = "alertButton")
+	public WebElement Alert1;
 	
 	public WebElement timerAlertButton;
 	
-	public WebElement confirmButton;
-	
-	public WebElement promtButton;
-	
-	
-	
-	
-	
-	
+	@FindBy (id = "confirmButton")
+	public WebElement confirmOrDismissAlert;
 	
 	
 	
