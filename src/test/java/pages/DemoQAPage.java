@@ -37,9 +37,4 @@ public class DemoQAPage {
 	@FindBy (id = "confirmButton")
 	public WebElement confirmOrDismissAlert;
 	
-	
-	
-	
-	
-	
 }
