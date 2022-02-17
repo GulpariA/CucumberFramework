@@ -1,4 +1,4 @@
-
+@Regression
 Feature: Amazon Search
               As a user, I should be able to search an iteam and the searched iteams should be relavant to search
               
