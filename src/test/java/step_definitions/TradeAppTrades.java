@@ -29,7 +29,7 @@ public class TradeAppTrades {
 		Driver.getDriver().get(PropertiesReader.getProperty("TradeAppURL"));
 	}
 
-	@When("I enter username{string} password{string}")
+	@When("I enter username {string} password {string}")
 	public void i_enter_username_gulpari_password_super_gulpari123(String username, String password) {
 		tradePage.Username.sendKeys(username);
 		tradePage.Password.sendKeys(password);
