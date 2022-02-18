@@ -1,4 +1,4 @@
-@Regression
+@Regression @AddtradeApp
 Feature: As a user, I am able to perform Trade app functions
 I want to add, delete and update trades
 
@@ -18,7 +18,7 @@ And The trade is deleted on the Database
 @AddTradeDataTable @SmokeTests
 Scenario: As a user, I want to add a trade
 Given I am on the Trade App log in page
-When I enter username"Gulpari" password"SuperGulpari123!"
+When I enter username "Gulpari" password "SuperGulpari123!"
 And I click on Trade login button
 Then I should be on the Trade homepage
 When I click on Add Trade button
@@ -32,7 +32,7 @@ And The trade is deleted on the Database
 @AddTradeAndValidate @SmokeTests
 Scenario: As a user, I want to add a trade
 Given I am on the Trade App log in page
-When I enter username"Gulpari" password"SuperGulpari123!"
+When I enter username "Gulpari" password "SuperGulpari123!"
 And I click on Trade login button
 Then I should be on the Trade homepage
 When I click on Add Trade button
@@ -49,7 +49,7 @@ Scenario: AS a user, I am able to insert a trade to Database
 Given I executed insert query to database
 |'5468'|'1'|'0'|'Kawap'|'2021-10-11'|'10.0'|'2022-02-12'|'20.0'|'0'|
 Given I am on the Trade App log in page
-When I enter username"Gulpari" password"SuperGulpari123!"
+When I enter username "Gulpari" password "SuperGulpari123!"
 And I click on Trade login button
 Then I should be on the Trade homepage
 When I search the "Kawap" 
