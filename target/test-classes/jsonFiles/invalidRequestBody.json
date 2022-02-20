@@ -1,10 +1,10 @@
 {
-  "id": 667788,
   "category": {
-    "id": 22232,
-    "name": "Cat"
+    "id": "badID",
+    "name": "Booboo",
+    "status": ""
   },
-  "name": "Fluffy",
+  "name": "doggie",
   "photoUrls": [
     "string"
   ],

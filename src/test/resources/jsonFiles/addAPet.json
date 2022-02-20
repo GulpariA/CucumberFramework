@@ -1,13 +1,18 @@
-	
-id	667788
-category	
-id	22232
-name	"Cat"
-name	"Fluffy"
-photoUrls	
-0	"string"
-tags	
-0	
-id	22232
-name	"dog"
-status	"available"
+{
+  "id": 667788,
+  "category": {
+    "id": 22232,
+    "name": "Cat"
+  },
+  "name": "Fluffy",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 22232,
+      "name": "dog"
+    }
+  ],
+  "status": "available"
+}
