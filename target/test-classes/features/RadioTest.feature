@@ -1,4 +1,4 @@
-@DemoQATests
+@DemoQATests @Regression
 Feature: DemoQA is a good website
   Allows us to practice our skills with test automation
 
