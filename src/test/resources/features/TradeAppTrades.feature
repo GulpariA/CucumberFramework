@@ -1,4 +1,4 @@
-@Regression @AddtradeApp
+ @AddtradeApp @Regression 
 Feature: As a user, I am able to perform Trade app functions
 I want to add, delete and update trades
 
