@@ -2,7 +2,7 @@
 Feature: Amazon Search
               As a user, I should be able to search an iteam and the searched iteams should be relavant to search
               
-              @amazonSearch @SomleTests
+              @amazonSearch 
               Scenario Outline: User is able to search multiple data set
               Given I am on amazon home page
               When I search item "<items>" 

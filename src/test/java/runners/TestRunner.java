@@ -8,13 +8,12 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		plugin = {"pretty", "html:Reports/htmlReport.html",
-		"json:Reports/jsonReport.json"},
+				"json:Reports/jsonReport.json"},
 		features="./src/test/resources/features",
 		glue="step_definitions",
 		dryRun=false,
-		tags="@SauceInValidLoginTest "
+		tags="@AddtradeApp"
 		)
 public class TestRunner {
-	
 
 }

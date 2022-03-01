@@ -1,3 +1,4 @@
+@Regression @SauceTest
 Feature: Sauce Demo Login
          This feature focues on positive and nagetive 
          log in tests
@@ -12,7 +13,7 @@ Feature: Sauce Demo Login
     Then I should be directed to inventory page
     And There should be 6 items in the page
 
-  @SauceInValidLogin
+  @SauceInValidLogin @SmokeTests
   Scenario: Invalid login test
     When I enter invalid username "standard_user" password "secret_invalid"
     And I click on the login button
@@ -25,7 +26,7 @@ Feature: Sauce Demo Login
     Then I should not be logged in
     And Error message should display "Epic sadface: Username and password do not match any user in this service"
 
-@SauceInValidLoginTest
+@SauceInValidLoginTest @SmokeTests
     Examples: Credentials
       | username      |  | password       |
       | standard_user |  | secret_invalid |

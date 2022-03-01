@@ -1,8 +1,17 @@
 package utilities;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.rmi.server.RemoteServer;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -12,7 +21,15 @@ import io.github.bonigarcia.wdm.managers.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.managers.InternetExplorerDriverManager;
 
 public class Driver {
+	/* Driver class is reusable class for webDriver and it checks the webDriver on the system.
+	 * If there isn't any driver on the system, it downloads the driver and sets up the path and environment  
+	 * For this purpose, I've used WebDriver manager
+	 * And if I want to run my script on different browser, 
+	 * all I have to do is change the browser name in the properties file.
+	 */
+	
 	private static WebDriver driver;
+	private static final String  sauceURL = "https://oauth-gulpari9211-4134b:ef143b91-3c87-499c-8d65-1b87efed4320@ondemand.us-west-1.saucelabs.com:443/wd/hub";
 	public static WebDriver getDriver() {
 		String browser = System.getProperty("browser");
 		if (browser == null) {
@@ -22,7 +39,11 @@ public class Driver {
 			switch (browser) {
 			case "firefox":
 				FirefoxDriverManager.firefoxdriver().setup();
-				driver = new FirefoxDriver();
+				FirefoxBinary ffBiary = new FirefoxBinary();
+				FirefoxOptions options = new FirefoxOptions();
+				options.setBinary(ffBiary);
+				options.setHeadless(true);
+				driver = new FirefoxDriver(options);
 				break;
 			case "ie":
 				InternetExplorerDriverManager.iedriver().setup();
@@ -32,12 +53,42 @@ public class Driver {
 				driver = new SafariDriver();
 				break;
 			case "chrome":
+				ChromeDriverManager.chromedriver().setup();
+				ChromeOptions chromeoptions = new ChromeOptions();
+				chromeoptions.addArguments("--disable-gpu");
+				chromeoptions.addArguments("--no-sandbox");
+				driver = new ChromeDriver(chromeoptions);
+				break;
+				
+			case "sauceLabs":
+				sacueConfig();
+				break;
+			case "chrome-headless":
 			default:
 				ChromeDriverManager.chromedriver().setup();
-				driver = new ChromeDriver();
+				ChromeOptions opts = new ChromeOptions();
+				opts.addArguments("--headless");
+				opts.addArguments("--disable-gpu");
+				opts.addArguments("--no-sandbox");
+				opts.addArguments("--window-size=1920,1080");
+				driver = new ChromeDriver(opts);
 			}
 		}
 		return driver;
+	}
+	
+	public static void sacueConfig()  {
+		ChromeOptions browserOptions = new ChromeOptions();
+		browserOptions.setCapability("platformName", "Windows 10");
+		browserOptions.setCapability("browserVersion", "latest");
+		Map<String, Object> sauceOptions = new HashMap<>();
+		browserOptions.setCapability("sauce:options", sauceOptions);
+		try {
+			driver = new RemoteWebDriver(new URL(sauceURL), browserOptions);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void quitDriver() {
