@@ -1,5 +1,11 @@
 package utilities;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.rmi.server.RemoteServer;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,6 +29,7 @@ public class Driver {
 	 */
 	
 	private static WebDriver driver;
+	private static final String  sauceURL = "https://oauth-gulpari9211-4134b:ef143b91-3c87-499c-8d65-1b87efed4320@ondemand.us-west-1.saucelabs.com:443/wd/hub";
 	public static WebDriver getDriver() {
 		String browser = System.getProperty("browser");
 		if (browser == null) {
@@ -52,6 +59,10 @@ public class Driver {
 				chromeoptions.addArguments("--no-sandbox");
 				driver = new ChromeDriver(chromeoptions);
 				break;
+				
+			case "sauceLabs":
+				sacueConfig();
+				break;
 			case "chrome-headless":
 			default:
 				ChromeDriverManager.chromedriver().setup();
@@ -64,6 +75,20 @@ public class Driver {
 			}
 		}
 		return driver;
+	}
+	
+	public static void sacueConfig()  {
+		ChromeOptions browserOptions = new ChromeOptions();
+		browserOptions.setCapability("platformName", "Windows 10");
+		browserOptions.setCapability("browserVersion", "latest");
+		Map<String, Object> sauceOptions = new HashMap<>();
+		browserOptions.setCapability("sauce:options", sauceOptions);
+		try {
+			driver = new RemoteWebDriver(new URL(sauceURL), browserOptions);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void quitDriver() {
